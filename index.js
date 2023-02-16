@@ -7,6 +7,7 @@ const path = require("path");
 const app = express();
 const authRoutes = require("./src/routes/auth");
 const blogRoutes = require("./src/routes/blog");
+const port = process.env.PORT || 4000;
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -49,7 +50,7 @@ app.use((error, req, res, next) => {
 mongoose
   .connect("mongodb+srv://ray:xFlpoMTzFeEV9H3J@cluster0.9ugibym.mongodb.net/blog?retryWrites=true&w=majority")
   .then(() => {
-    app.listen(4000, () => console.log("Connection Success"));
+    app.listen(port, () => console.log("Connection Success"));
   })
   .catch((err) => console.log(err));
 
