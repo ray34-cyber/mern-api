@@ -47,11 +47,15 @@ app.use((error, req, res, next) => {
   res.status(status).json({ message: message, data: data });
 });
 
+mongoose.set("strictQuery", true);
+
 mongoose
   .connect("mongodb+srv://ray:xFlpoMTzFeEV9H3J@cluster0.9ugibym.mongodb.net/blog?retryWrites=true&w=majority")
   .then(() => {
     app.listen(port, () => console.log("Connection Success"));
   })
   .catch((err) => console.log(err));
+
+console.log(process.env.MONGODB_URL);
 
 // xFlpoMTzFeEV9H3J
