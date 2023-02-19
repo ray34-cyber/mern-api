@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -50,12 +51,8 @@ app.use((error, req, res, next) => {
 mongoose.set("strictQuery", true);
 
 mongoose
-  .connect("mongodb+srv://ray:xFlpoMTzFeEV9H3J@cluster0.9ugibym.mongodb.net/blog?retryWrites=true&w=majority")
+  .connect(`${process.env.MONGODB_URL}`)
   .then(() => {
     app.listen(port, () => console.log("Connection Success"));
   })
   .catch((err) => console.log(err));
-
-console.log(process.env.MONGODB_URL);
-
-// xFlpoMTzFeEV9H3J
